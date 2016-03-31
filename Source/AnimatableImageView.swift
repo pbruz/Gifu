@@ -5,7 +5,7 @@ public class AnimatableImageView: UIImageView {
   /// An `Animator` instance that holds the frames of a specific image in memory.
   var animator: Animator?
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
-  lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: #selector(updateFrame))
+    lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: "updateFrame:")
 
   /// The size of the frame cache.
   public var framePreloadCount = 50
@@ -89,8 +89,8 @@ public class AnimatableImageView: UIImageView {
     }
   }
 
-  /// Invalidate the displayLink so it releases this object.
-  deinit {
+  /// Invalidate the displayLink and releases this object.
+  public func destroyAnimation() {
     displayLink.invalidate()
   }
 
